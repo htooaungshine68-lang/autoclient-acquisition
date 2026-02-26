@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      @media only screen and (max-width: 600px) {
+        .outer-padding {
+          padding: 16px !important;
+        }
+
+        .container {
+          width: 100% !important;
+        }
+
+        .paragraph {
+          margin-bottom: 16px !important;
+        }
+
+        .button {
+          width: 100% !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      background-color: #191816;
+      font-family: Inter, sans-serif;
+      font-size: 18px;
+      line-height: 1.4;
+      color: #f6f1eb;
+      border-radius: 20px;
+      overflow: hidden;
+    "
+  >
+    <!-- Outer Wrapper -->
+    <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+      <tr>
+        <td class="outer-padding" align="center" style="padding: 40px">
+          <!-- Inner Container -->
+          <table
+            class="container"
+            width="100%"
+            cellpadding="0"
+            cellspacing="0"
+            role="presentation"
+            style="max-width: 600px"
+          >
+            <tr>
+              <td>
+                <!-- Intro Message -->
+                <p
+                  class="paragraph"
+                  style="
+                    margin: 0 0 24px 0;
+                    font-family: Inter, sans-serif;
+                    font-size: 18px;
+                    line-height: 1.4;
+                    color: #f6f1eb;
+                  "
+                >
+                  Hello
+                  <strong><span style="color: #ff3d00"> {{name}},</span></strong
+                  ><br /><br />
+                  {{body}}
+                </p>
+
+                <!-- Signature -->
+                <p
+                  class="paragraph"
+                  style="
+                    margin: 0 0 24px 0;
+                    font-family: Inter, sans-serif;
+                    font-size: 18px;
+                    line-height: 1.4;
+                    color: #f6f1eb;
+                  "
+                >
+                  <strong>⸺ Kai Bryant</strong><br />
+                  <strong>[Life-Cycle Retention Strategist]</strong>
+                </p>
+              </td>
+            </tr>
+          </table>
+          <!-- End Inner Container -->
+        </td>
+      </tr>
+    </table>
+    <!-- End Outer Wrapper -->
+  </body>
+</html>
