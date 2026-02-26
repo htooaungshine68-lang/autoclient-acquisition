@@ -29,10 +29,10 @@ jobs:
 
       - name: Run outreach bot
         env:
-          NOTION_API_KEY: ${{ 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 }}
-          NOTION_DATABASE_ID: ${{ 30d351899d8d819baac0ce09ca716b32 }}
-          EMAIL_HOST_USER: ${{ htooaungshine789@gmail.com }}
-          EMAIL_HOST_PASSWORD: ${{ mylq qwsb czvm xfmh }}
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          EMAIL_HOST_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_PASS }}
           SMTP_SERVER: smtp.gmail.com
           SMTP_PORT: 587
         run: python main.py
