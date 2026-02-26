@@ -1,0 +1,47 @@
+name: AutoClient Outreach
+
+on:
+  schedule:
+    # Run every hour
+    - cron: '0 * * * *'
+  workflow_dispatch:
+    # Allow manual trigger for testing
+  push:
+    branches:
+      - main
+
+jobs:
+  outreach:
+    name: Run Outreach Bot
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install notion-client pytz python-dotenv
+
+      - name: Run outreach bot
+        env:
+          NOTION_API_KEY: ${{ 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 }}
+          NOTION_DATABASE_ID: ${{ 30d351899d8d819baac0ce09ca716b32 }}
+          EMAIL_HOST_USER: ${{ htooaungshine789@gmail.com }}
+          EMAIL_HOST_PASSWORD: ${{ mylq qwsb czvm xfmh }}
+          SMTP_SERVER: ${{ smtp.gmail.com }}
+          SMTP_PORT: ${{ 587 }}
+        run: python main.py
+
+      - name: Check for failures
+        if: failure()
+        run: |
+          echo "Outreach workflow failed. Check logs for details."
+          exit 1
