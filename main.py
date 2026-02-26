@@ -40,10 +40,10 @@ def safe_email(props, key):
 # -------------------- MAIN CLASS --------------------
 class EasyColdEmail:
     def __init__(self):
-        self.notion = Client(auth=os.getenv("NOTION_API_KEY"))
-        self.db_id = os.getenv("NOTION_DATABASE_ID")
-        self.sender_email = os.getenv("EMAIL_USER")
-        self.app_password = os.getenv("EMAIL_PASS")
+        self.notion = Client(auth=os.getenv("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"))
+        self.db_id = os.getenv("30d351899d8d819baac0ce09ca716b32")
+        self.sender_email = os.getenv("htooaungshine789@gmail.com")
+        self.app_password = os.getenv("mylq qwsb czvm xfmh")
 
         self.max_daily = 30
         self.counter_file = "daily_counter.json"
