@@ -102,8 +102,8 @@ class EasyColdEmail:
             status = safe_select(props, "STATUS")
             timezone_name = safe_select(props, "Time Zone") or "UTC"
             
-            if status in ["Sent", "Failed"]:
-                continue
+            if status != "Ready":
+            continue
 
             email = safe_email(props, "EMAIL")
             if not email:
