@@ -8,6 +8,9 @@ class EasyColdEmail:
         self.work_start = "09:00"
         self.work_end = "17:00"
 
+        # self.max_daily = 30
+        # self.counter_file = "daily_counter.json"
+
     # -------------------- TIME RULE --------------------
     def is_business_hours(self, timezone_name):
         try:
@@ -44,7 +47,8 @@ class EasyColdEmail:
     def run(self):
         logging.info("🔄 Syncing with Notion...")
         pages = self.notion.databases.query(database_id=self.db_id)["results"]
-
+        logging.info(f"📄 Found {len(pages)} leads in database")
+        
         with open("email_template.html", "r", encoding="utf-8") as f:
             template = f.read()
 
