@@ -1,4 +1,5 @@
 import os
+from notion_client import Client
 import smtplib
 import ssl
 import pytz
@@ -8,6 +9,7 @@ import json
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from dotenv import load_dotenv
+
 
 # -------------------- SETUP --------------------
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
