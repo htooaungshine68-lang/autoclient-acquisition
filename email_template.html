@@ -3,22 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Outreach</title>
+
     <style>
       @media only screen and (max-width: 600px) {
-        .outer-padding {
-          padding: 16px !important;
-        }
-
         .container {
           width: 100% !important;
-        }
-
-        .paragraph {
-          margin-bottom: 16px !important;
+          padding: 24px !important;
         }
 
         .button {
           width: 100% !important;
+        }
+
+        .headline {
+          font-size: 22px !important;
+        }
+
+        .paragraph {
+          font-size: 16px !important;
         }
       }
     </style>
@@ -28,68 +31,168 @@
     style="
       margin: 0;
       padding: 0;
-      background-color: #191816;
-      font-family: Inter, sans-serif;
-      font-size: 18px;
-      line-height: 1.4;
-      color: #f6f1eb;
-      border-radius: 20px;
-      overflow: hidden;
+      background-color: #0f0f12;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter,
+        sans-serif;
+      color: #eaeaea;
     "
   >
-    <!-- Outer Wrapper -->
-    <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+    <table width="100%" cellpadding="0" cellspacing="0">
       <tr>
-        <td class="outer-padding" align="center" style="padding: 40px">
-          <!-- Inner Container -->
+        <td align="center" style="padding: 40px 20px">
+          <!-- Container -->
           <table
             class="container"
-            width="100%"
+            width="600"
             cellpadding="0"
             cellspacing="0"
-            role="presentation"
-            style="max-width: 600px"
+            style="
+              background-color: #16161b;
+              border-radius: 16px;
+              padding: 40px;
+              box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            "
           >
+            <!-- Accent Bar -->
             <tr>
-              <td>
-                <!-- Intro Message -->
+              <td
+                style="
+                  height: 4px;
+                  background: linear-gradient(
+                    90deg,
+                    #ff3d00,
+                    #ff8a00,
+                    #ff3d00
+                  );
+                  border-radius: 4px;
+                "
+              ></td>
+            </tr>
+
+            <tr>
+              <td style="padding-top: 32px">
+                <!-- Headline -->
+                <h1
+                  class="headline"
+                  style="
+                    margin: 0 0 24px 0;
+                    font-size: 26px;
+                    font-weight: 600;
+                    color: #ffffff;
+                  "
+                >
+                  Design That Converts.
+                  <span style="color: #ff3d00">Not Just Looks Good.</span>
+                </h1>
+
+                <!-- Body -->
                 <p
                   class="paragraph"
                   style="
                     margin: 0 0 24px 0;
-                    font-family: Inter, sans-serif;
                     font-size: 18px;
-                    line-height: 1.4;
-                    color: #f6f1eb;
+                    line-height: 1.6;
+                    color: #cfcfcf;
                   "
                 >
                   Hello
-                  <strong><span style="color: #ff3d00"> {{name}},</span></strong
-                  ><br /><br />
-                  {{body}}
+                  <strong style="color: #ffffff">{{name}},</strong>
                 </p>
 
-                <!-- Signature -->
                 <p
                   class="paragraph"
                   style="
                     margin: 0 0 24px 0;
-                    font-family: Inter, sans-serif;
                     font-size: 18px;
-                    line-height: 1.4;
-                    color: #f6f1eb;
+                    line-height: 1.6;
+                    color: #cfcfcf;
                   "
                 >
-                  <strong>⸺ Htoo Aung Shine</strong><br />
-                  <strong>Life-Cycle Retention and Branding Strategist</strong>
+                  {{body}}
+                </p>
+
+                <!-- Value Box -->
+                <table
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                  style="
+                    background-color: #1f1f26;
+                    border-radius: 12px;
+                    padding: 24px;
+                    margin: 24px 0;
+                  "
+                >
+                  <tr>
+                    <td style="font-size: 16px; color: #d6d6d6">
+                      • Lifecycle Email Systems  
+                      <br />
+                      • Retention-Focused Design  
+                      <br />
+                      • Conversion-Optimized Layouts  
+                      <br />
+                      • Mobile-First Execution  
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- CTA Button -->
+                <table cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td>
+                      <a
+                        href="https://yourportfolio.com"
+                        target="_blank"
+                        class="button"
+                        style="
+                          display: inline-block;
+                          padding: 14px 28px;
+                          background: linear-gradient(
+                            90deg,
+                            #ff3d00,
+                            #ff8a00
+                          );
+                          color: #ffffff;
+                          text-decoration: none;
+                          font-size: 16px;
+                          font-weight: 600;
+                          border-radius: 8px;
+                        "
+                      >
+                        View My Work →
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Divider -->
+                <hr
+                  style="
+                    border: none;
+                    border-top: 1px solid #2a2a32;
+                    margin: 32px 0;
+                  "
+                />
+
+                <!-- Signature -->
+                <p
+                  style="
+                    margin: 0;
+                    font-size: 16px;
+                    line-height: 1.6;
+                    color: #bcbcbc;
+                  "
+                >
+                  ⸺ <strong style="color: #ffffff">Htoo Aung Shine</strong
+                  ><br />
+                  Lifecycle Retention & Branding Strategist
                 </p>
               </td>
             </tr>
           </table>
-          <!-- End Inner Container -->
+          <!-- End Container -->
         </td>
       </tr>
     </table>
-    <!-- End Outer Wrapper -->
   </body>
 </html>
