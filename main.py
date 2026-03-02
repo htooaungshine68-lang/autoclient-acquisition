@@ -56,24 +56,22 @@ class EasyColdEmail:
         logging.info(f"DEBUG EMAIL PASS SET: {bool(self.app_password)}")
 
     # -------------------- TIME RULE --------------------
-    def is_business_hours(self, country):
-        tz_map = {
-            "THAILAND": "Asia/Bangkok",
-            "UNITED_STATES": "America/New_York",
-            "UNITED_KINGDOM": "Europe/London",
-            "AUSTRALIA": "Australia/Sydney",
-            "SINGAPORE": "Asia/Singapore",
-        }
-        tz = pytz.timezone(tz_map.get(country, "UTC"))
-        now = datetime.datetime.now(pytz.UTC).astimezone(tz)
+   def is_business_hours(self, timezone_name):
+    try:
+        tz = pytz.timezone(timezone_name)
+    except Exception:
+        logging.warning(f"Invalid timezone: {timezone_name}, defaulting to UTC")
+        tz = pytz.UTC
 
-        start_h, start_m = map(int, self.work_start.split(":"))
-        end_h, end_m = map(int, self.work_end.split(":"))
+    now = datetime.datetime.now(pytz.UTC).astimezone(tz)
 
-        start = now.replace(hour=start_h, minute=start_m, second=0)
-        end = now.replace(hour=end_h, minute=end_m, second=0)
+    start_h, start_m = map(int, self.work_start.split(":"))
+    end_h, end_m = map(int, self.work_end.split(":"))
 
-        return start <= now <= end
+    start = now.replace(hour=start_h, minute=start_m, second=0, microsecond=0)
+    end = now.replace(hour=end_h, minute=end_m, second=0, microsecond=0)
+
+    return start <= now <= end
 
     # -------------------- EMAIL --------------------
     def send_email(self, to_email, subject, html):
@@ -102,6 +100,8 @@ class EasyColdEmail:
             props = page["properties"]
 
             status = safe_select(props, "STATUS")
+            timezone_name = safe_select(props, "Time Zone") or "UTC"
+            
             if status in ["Sent", "Failed"]:
                 continue
 
@@ -130,7 +130,9 @@ class EasyColdEmail:
 
             try:
                 self.send_email(email, subject, html)
-
+                if not self.is_business_hours(timezone_name):
+                    logging.info(f"⏳ Skipping {email} - outside business hours in {timezone_name}")
+                    continue
                 self.notion.pages.update(
                     page_id=page["id"],
                     properties={
