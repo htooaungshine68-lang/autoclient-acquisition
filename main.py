@@ -69,7 +69,10 @@ class EasyColdEmail:
                 continue
 
             # ✅ Check business hours BEFORE sending
+            logging.info(f"Business hour check: {self.is_business_hours(timezone_name)}")
+            
             if not self.is_business_hours(timezone_name):
+                
                 logging.info(f"⏳ Skipping - outside business hours in {timezone_name}")
                 continue
 
