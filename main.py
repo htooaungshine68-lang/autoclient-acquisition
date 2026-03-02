@@ -58,18 +58,18 @@ class EasyColdEmail:
   # -------------------- SCALABLE --------------------
 
     def get_all_pages(self):
-    results = []
-    response = self.notion.databases.query(database_id=self.db_id)
-    results.extend(response["results"])
-
-    while response.get("has_more"):
-        response = self.notion.databases.query(
-            database_id=self.db_id,
-            start_cursor=response["next_cursor"]
-        )
+        results = []
+        response = self.notion.databases.query(database_id=self.db_id)
         results.extend(response["results"])
-
-    return results
+    
+        while response.get("has_more"):
+            response = self.notion.databases.query(
+                database_id=self.db_id,
+                start_cursor=response["next_cursor"]
+            )
+            results.extend(response["results"])
+    
+        return results
     
     # --------------------  --------------------
     def run(self):
