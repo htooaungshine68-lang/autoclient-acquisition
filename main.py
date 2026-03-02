@@ -54,6 +54,12 @@ class EasyColdEmail:
             status = safe_select(props, "STATUS")
             timezone_name = safe_select(props, "Time Zone") or "UTC"
 
+            logging.info(
+                f"Lead: {safe_title(props, 'NAME')} | "
+                f"Status: {status} | "
+                f"Timezone: {timezone_name}"
+            )
+
             # ✅ Only send if Ready
             if status != "Ready":
                 continue
