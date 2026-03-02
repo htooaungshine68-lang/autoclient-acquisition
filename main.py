@@ -1,3 +1,14 @@
+import os
+import ssl
+import smtplib
+import pytz
+import datetime
+import logging
+
+from notion_client import Client
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 class EasyColdEmail:
     def __init__(self):
         self.notion = Client(auth=os.getenv("NOTION_API_KEY"))
@@ -43,11 +54,30 @@ class EasyColdEmail:
             server.login(self.sender_email, self.app_password)
             server.send_message(msg)
 
-    # -------------------- RUN --------------------
+
+  # -------------------- SCALABLE --------------------
+
+    def get_all_pages(self):
+    results = []
+    response = self.notion.databases.query(database_id=self.db_id)
+    results.extend(response["results"])
+
+    while response.get("has_more"):
+        response = self.notion.databases.query(
+            database_id=self.db_id,
+            start_cursor=response["next_cursor"]
+        )
+        results.extend(response["results"])
+
+    return results
+    
+    # --------------------  --------------------
     def run(self):
+        pages = self.get_all_pages()
         logging.info("🔄 Syncing with Notion...")
         pages = self.notion.databases.query(database_id=self.db_id)["results"]
         logging.info(f"📄 Found {len(pages)} leads in database")
+        
         
         with open("email_template.html", "r", encoding="utf-8") as f:
             template = f.read()
@@ -112,3 +142,14 @@ class EasyColdEmail:
                     page_id=page["id"],
                     properties={"STATUS": {"select": {"name": "Failed"}}},
                 )
+if __name__ == "__main__":
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(levelname)s - %(message)s"
+    )
+
+    try:
+        EasyColdEmail().run()
+    except Exception as e:
+        logging.critical(f"💥 Fatal error: {e}")
+        raise
