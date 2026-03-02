@@ -1,5 +1,4 @@
 import os
-from notion_client import Client
 import smtplib
 import ssl
 import pytz
@@ -9,7 +8,7 @@ import json
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from dotenv import load_dotenv
-
+from notion_client import Client
 
 # -------------------- SETUP --------------------
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -41,10 +40,10 @@ def safe_email(props, key):
 # -------------------- MAIN CLASS --------------------
 class EasyColdEmail:
     def __init__(self):
-        self.notion = Client(auth=os.getenv("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"))
-        self.db_id = os.getenv("30d351899d8d819baac0ce09ca716b32")
-        self.sender_email = os.getenv("htooaungshine789@gmail.com")
-        self.app_password = os.getenv("mylq qwsb czvm xfmh")
+        self.notion = Client(auth=os.getenv("NOTION_API_KEY"))
+        self.db_id = os.getenv("NOTION_DATABASE_ID")
+        self.sender_email = os.getenv("EMAIL_USER")
+        self.app_password = os.getenv("EMAIL_PASS")
 
         self.max_daily = 30
         self.counter_file = "daily_counter.json"
