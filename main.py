@@ -9,6 +9,33 @@ from notion_client import Client
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+def safe_select(props, name):
+    try:
+        return props[name]["select"]["name"]
+    except:
+        return None
+
+
+def safe_title(props, name):
+    try:
+        return props[name]["title"][0]["plain_text"]
+    except:
+        return None
+
+
+def safe_rich_text(props, name):
+    try:
+        return props[name]["rich_text"][0]["plain_text"]
+    except:
+        return None
+
+
+def safe_email(props, name):
+    try:
+        return props[name]["email"]
+    except:
+        return None
+
 class EasyColdEmail:
     def __init__(self):
         self.notion = Client(auth=os.getenv("NOTION_API_KEY"))
